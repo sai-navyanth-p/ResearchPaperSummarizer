@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-local_dir = "bart_model"  # Match this with save_path above
+local_dir = "/mnt/block/bart_model"  # Match this with save_path above
 tokenizer = AutoTokenizer.from_pretrained(local_dir)
 model = AutoModelForSeq2SeqLM.from_pretrained(local_dir)
 summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
