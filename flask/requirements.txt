@@ -2,5 +2,5 @@ Flask
 transformers
 torch
 PyMuPDF
-uvicorn
 gunicorn
+flask-socketio

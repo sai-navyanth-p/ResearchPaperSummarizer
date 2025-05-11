@@ -22,9 +22,10 @@ def upload():
     if not file.filename.endswith(".pdf"):
         return jsonify({"error": "Invalid file type"}), 400
 
-    # Save and read file
-    filepath = os.path.join("uploads", file.filename)
-    os.makedirs("uploads", exist_ok=True)
+    # Save and read file to /app/uploads
+    upload_dir = "/app/uploads"
+    os.makedirs(upload_dir, exist_ok=True)
+    filepath = os.path.join(upload_dir, file.filename)
     file.save(filepath)
 
     # Extract text from PDF
@@ -42,5 +43,3 @@ def upload():
 
     return jsonify({"summary": final_summary})
 
-if __name__ == "__main__":
-    app.run(debug=True)
