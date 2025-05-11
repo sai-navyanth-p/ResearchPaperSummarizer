@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 5000
 
 # Command to run FastAPI
-CMD ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:5000"]
+CMD ["gunicorn", "-w", "4", "-t", "120", "app:app", "-b", "0.0.0.0:5000"]
