@@ -77,7 +77,9 @@ services:
           echo "ERROR: RCLONE_CONTAINER is not set"
           exit 1
         fi
-        echo "Uploading cleandata directory to object store..."
-        rclone copy /data/cleandata chi_uc:$RCLONE_CONTAINER/cleandata --progress
+        echo "Uploading pdfs directory to object store..."
+        rclone copy /data/pdfs chi_uc:$RCLONE_CONTAINER/pdfs --progress
+        echo "Uploading trainingdata directory to object store..."
+        rclone copy /data/trainingdata chi_uc:$RCLONE_CONTAINER/trainingdata --progress
         echo "Listing directories in container after load stage:"
         rclone lsd chi_uc:$RCLONE_CONTAINER
