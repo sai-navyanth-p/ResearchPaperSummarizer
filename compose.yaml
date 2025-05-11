@@ -1,6 +1,8 @@
 name: persist_block
 
 volumes:
+  minio_data:
+  postgres_data:
   models:
     external: true  # Uses externally created volume
     
