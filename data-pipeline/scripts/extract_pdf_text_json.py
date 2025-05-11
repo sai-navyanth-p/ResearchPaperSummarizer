@@ -47,7 +47,7 @@ def main(pdfdir, outfile):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--pdfdir', required=True, help="Directory containing PDFs")
-    parser.add_argument('--outfile', default='cleandata/textdata.json', help="Output JSON file")
+    parser.add_argument('--outfile', default='trainingdata/train.json', help="Output JSON file")
     args = parser.parse_args()
     nltk.download('punkt')
     main(args.pdfdir, args.outfile)

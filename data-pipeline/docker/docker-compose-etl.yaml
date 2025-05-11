@@ -59,9 +59,9 @@ services:
         pip install --no-cache-dir pymupdf tqdm nltk
         python3 -m nltk.downloader punkt
         echo "Extracting and preprocessing text from PDFs..."
-        python3 /scripts/extract_pdf_text_json.py --pdfdir pdfs --outfile cleandata/textdata.json
-        echo "Listing contents of /data/cleandata after text extraction:"
-        ls -lh /data/cleandata
+        python3 /scripts/extract_pdf_text_json.py --pdfdir pdfs --outfile trainingdata/train.json
+        echo "Listing contents of /data/trainingdata after text extraction:"
+        ls -lh /data/trainingdata
 
   load-data:
     container_name: etl_load_data
