@@ -1,0 +1,54 @@
+FROM quay.io/jupyter/pytorch-notebook:cuda12-pytorch-2.5.1
+
+# Install cuDNN 9 for CUDA 12
+USER root
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    rm cuda-keyring_1.1-1_all.deb && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        cudnn9-cuda-12 \
+        ffmpeg \
+        git \
+        unzip \
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install ML + BART + summarization-related packages
+USER ${NB_UID}
+RUN pip install --pre --no-cache-dir \
+    'torchinfo' \
+    'neural-compressor' \
+    'onnx' \
+    'onnxruntime-gpu' \
+    'tensorrt' \
+    'tensorrt-cu12'  \
+    'tensorrt-cu12-bindings' \
+    'tensorrt-cu12-libs' \
+    'transformers>=4.40.0' \
+    'tokenizers>=0.19.0' \
+    'datasets' \
+    'accelerate' \
+    'scipy' \
+    'sentencepiece' \
+    'protobuf<4' \
+    'PyMuPDF' \
+    'flask' \
+    'gunicorn' \
+    'uvicorn[standard]' \
+    && fix-permissions "${CONDA_DIR}" \
+    && fix-permissions "/home/${NB_USER}"
+
+# Set library path for ONNX/TensorRT
+ENV LD_LIBRARY_PATH="/opt/conda/lib/python3.12/site-packages/nvidia/cublas/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/cuda_cupti/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/cuda_runtime/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/cudnn/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/cufft/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/curand/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/cusolver/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/cusparse/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/nccl/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/nvjitlink/lib:\
+/opt/conda/lib/python3.12/site-packages/nvidia/nvtx/lib:\
+/opt/conda/lib/python3.12/site-packages/tensorrt_libs"
