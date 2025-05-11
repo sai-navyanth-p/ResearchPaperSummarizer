@@ -60,6 +60,8 @@ services:
             - driver: nvidia
               capabilities: [gpu]
               device_ids: ["0"]
+    runtime: nvidia  # Add this line to use the NVIDIA runtime
+
   postgres:
     image: postgres:latest
     container_name: postgres
