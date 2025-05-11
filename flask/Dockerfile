@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 5000
 
 # Command to run FastAPI
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:8000"]
