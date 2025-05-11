@@ -48,8 +48,6 @@ services:
       context: /home/cc/ResearchPaperSummarizer/flask
       dockerfile: Dockerfile
     container_name: flask
-    networks:
-      - app-network
     volumes:
       - /mnt/block:/mnt/block:rw
     user: root
