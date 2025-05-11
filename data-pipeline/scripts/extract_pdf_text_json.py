@@ -6,6 +6,9 @@ from tqdm import tqdm
 import nltk
 import string
 
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
 def preprocess_text(text):
     # Lowercase, remove punctuation, tokenize
     text = text.lower()
