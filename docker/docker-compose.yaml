@@ -43,6 +43,25 @@ services:
         echo 'Bucket mlflow-artifacts already exists';
       fi"
 
+  flask:
+    build:
+      context: /home/cc/ResearchPaperSummarizer/flask
+      dockerfile: Dockerfile
+    container_name: flask
+    networks:
+      - app-network
+    volumes:
+      - /mnt/block:/mnt/block:rw
+    user: root
+    ports:
+      - "5000:5000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              device_ids: ["0"]
   postgres:
     image: postgres:latest
     container_name: postgres
