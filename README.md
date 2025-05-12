@@ -115,7 +115,6 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
 ### Strategy:
 - Fine-tune a pretrained BART model on the arXiv full-text → abstract pairs.
 - Utilize **Ray Train** on **Chameleon A100 GPUs** for distributed training, enabling efficient scaling across multiple GPUs.
-- Implement **Hyperparameter Optimization (HPO)** using **Ray Tune** to find optimal configurations for model fine-tuning.
 - Track performance using **MLFlow**, including **ROUGE** and **BLEU** scores to assess summary quality.
 
 ### Tools:
@@ -126,10 +125,9 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
 
 ### Difficulty Points:
 - **Distributed Training (DDP)**: Implementing Distributed Data Parallel (DDP) for multi-GPU training to speed up model fine-tuning.
-- **Training Time Plots (1 vs Multi-GPU)**: Plotting and comparing the training time for single-GPU vs multi-GPU training to evaluate efficiency gains from distributed training.
 
 ### Specs:
-- **100k Samples**: We will fine-tune the model on 100,000 arXiv full-text → abstract pairs.
+- **50k Samples**: We will fine-tune the model on 100,000 arXiv full-text → abstract pairs.
 - **GPU Usage**: Allocate **2-4 hours/week** on **A100 GPUs** for fine-tuning.
 - **ROUGE/BLEU Scores**: These metrics will be tracked via **MLFlow** to evaluate the quality of summaries.
 
@@ -138,13 +136,8 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
 ## Serving & Monitoring (Unit 6 & 7)
 
 ### Strategy:
-- **FastAPI** for serving the model in a REST API.
-- **TorchServe** to deploy and serve PyTorch models, ensuring compatibility with FastAPI.
+- **FlaskAPI** for serving the model in a REST API.
 - **Prometheus & Grafana** for monitoring the health and performance of the model, including latency, error rates, and throughput.
-
-### Optimizations:
-- **Quantization**: Apply model quantization to reduce the model's size and improve inference latency.
-- **TorchScript**: Use TorchScript for compiling the model to optimize performance.
 
 ### Requirements:
 - **Latency**: Ensure that the model serves predictions with latency under **300ms** for real-time applications.
@@ -169,17 +162,11 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
   - Tokenize the cleaned text for model input.
 
 ### Online:
-- Simulate **uploading new papers** and data updates using **Kafka** or **Redis streams** to ensure real-time data ingestion and processing.
+- Simulate **uploading new papers** to ensure real-time data ingestion and processing.
 
 ### Storage:
-- Store data in a **persistent 100GB volume** for preprocessing and model storage.
+- Store data in a **persistent 50GB volume** for preprocessing and model storage.
 - Use **object storage** for large files and checkpoints, ensuring scalability.
-
-### Dashboard:
-- Build an interactive dashboard using **Streamlit** or **Grafana** for visualizing data statistics such as:
-  - Token coverage.
-  - Text drift over time.
-  - Model performance metrics.
 
 ---
 
@@ -189,7 +176,6 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
 - **GitHub Actions** → **ArgoCD** → **Helm** → **Terraform** for automating the deployment and management of infrastructure and models.
   - **GitHub Actions**: Automates the process of training, testing, and building Docker containers.
   - **ArgoCD**: Manages Kubernetes deployment of containers.
-  - **Helm**: For managing Kubernetes packages and simplifying deployment.
   - **Terraform**: Infrastructure as Code (IaC) to define the infrastructure and configurations, ensuring consistency across environments.
 
 ### Infrastructure as Code:
@@ -211,5 +197,6 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
 - **Using Ray Train**: Utilized Ray Train to execute training jobs, enabling distributed training and automatic checkpointing to our object storage for model persistence and recovery.
 
 ---
+
 
 
