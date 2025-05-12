@@ -208,8 +208,8 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
 
 ### Difficulty Points:
 - **Continuous Training**: Set up a mechanism for continuous retraining of the model using new data, ensuring the model remains relevant over time.
-- **Automated Promotion**: Automate the process of promoting the model from staging to production after it passes all tests, ensuring continuous updates.
-- **Retraining on Drift**: Implement triggers for retraining based on data or model drift, so that the system adapts to new information.
+- **Retraining on Drift**: Implemented a trigger to retrain the model whenever new documents are uploaded and processed through the pipeline, allowing the system to adapt to new information.
+- **Using Ray Train**: Utilized Ray Train to execute training jobs, enabling distributed training and automatic checkpointing to our object storage for model persistence and recovery.
 
 ---
 
