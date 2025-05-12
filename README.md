@@ -145,11 +145,6 @@ diagram, (3) justification for your strategy, (4) relate back to lecture materia
 - **Deployment Stages**: Implement **Canary → Staging → Production** deployment strategy for smooth transitions between versions.
 - **Online Evaluation**: Simulate real users for continuous evaluation using **synthetic users**.
 
-### Difficulty Points:
-- **GPU vs CPU vs Quantized Model Comparison**: Compare performance and latency between GPU, CPU, and quantized models to determine the most efficient deployment strategy.
-- **Data/Model Drift Monitoring**: Implement monitoring to detect data and model drift, triggering automatic retraining when needed.
-- **Auto-Retraining Hooks**: Set up auto-retraining mechanisms when drift is detected, ensuring the model stays accurate and relevant over time.
-
 ---
 
 ## Data Pipeline (Unit 8)
