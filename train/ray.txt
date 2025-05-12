@@ -1,0 +1,77 @@
+
+# For NVIDIA (CUDA)
+nvidia-smi
+
+
+# For ROCm build (takes 5–10 minutes)
+docker build -t ray-rocm:2.42.1 -f researchpapersummarizer/docker/Dockerfile.ray-rocm .
+
+# OR for CUDA build
+docker build -t ray-cuda:latest -f researchpapersummarizer/docker/Dockerfile.ray-cuda .
+
+
+# Get host IP (for Ray dashboard and communication)
+export HOST_IP=$(curl --silent http://169.254.169.254/latest/meta-data/public-ipv4 )
+
+# For ROCm setup
+docker compose -f researchpapersummarizer/docker/docker-compose-ray-rocm.yaml up -d
+
+# For CUDA setup
+docker compose -f researchpapersummarizer/docker/docker-compose-ray-cuda.yaml up -d
+
+# Check that ray-head, ray-worker-0, and ray-worker-1 are running
+docker ps
+
+# Check GPU for each worker
+docker exec -it ray-worker-0 rocm-smi         # ROCm
+docker exec -it ray-worker-1 rocm-smi
+
+# Or, if using NVIDIA
+docker exec -it ray-worker-0 nvidia-smi --list-gpus
+docker exec -it ray-worker-1 nvidia-smi --list-gpus
+
+
+# Build Jupyter container
+docker build -t jupyter-ray -f researchpapersummarizer/docker/Dockerfile.jupyter-ray .
+
+# Run Jupyter container
+HOST_IP=$(curl --silent http://169.254.169.254/latest/meta-data/public-ipv4 )
+docker run -d --rm -p 8888:8888 \
+  -v ~/researchpapersummarizer/workspace_ray:/home/jovyan/work/ \
+  -e RAY_ADDRESS=http://${HOST_IP}:8265/ \
+  --name jupyter \
+  jupyter-ray
+
+# Get Jupyter notebook link
+docker logs jupyter
+
+# Example output (copy the link and replace 127.0.0.1 with <HOST_IP>)
+# http://127.0.0.1:8888/lab?token=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+# Example fixed: http://<HOST_IP>:8888/lab?token=XXXX
+
+# Access Ray Dashboard:
+# http://<HOST_IP>:8265/
+
+# Inside Jupyter > New Terminal
+env | grep RAY_ADDRESS
+
+# Create file train_ray_job.py with the content below:
+echo "
+import ray
+
+ray.init(address='auto')
+
+@ray.remote
+def train_on_gpu(rank):
+    import torch
+    print(f'Running on GPU {rank}, available: {torch.cuda.is_available()}')
+    return f'GPU {rank} finished'
+
+results = ray.get([train_on_gpu.remote(i) for i in range(2)])
+print(results)
+" > ~/researchpapersummarizer/workspace_ray/train_ray_job.py
+
+# Run the Ray job:
+python train_ray_job.py
+
+
