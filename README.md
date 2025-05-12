@@ -13,7 +13,31 @@ propose a system for a science problem, for example.)
 # Machine Learning System for Automated Scientific Paper Summarization
 
 ## Value Proposition
-The proposed machine learning system enhances existing scientific publication and research platforms by providing automated, high-quality summaries of academic papers using advanced language models and LAMA-based analysis. This system can be directly integrated into platforms like arXiv, Semantic Scholar, or institutional repositories, improving the way researchers and practitioners digest scientific knowledge.
+The proposed machine learning system delivers automated, high-quality summarization of scientific research papers, designed to meet the growing needs of R&D organizations, academic institutions, and research platforms. Leveraging advanced transformer-based language models and LAMA-based contextual understanding, our system transforms the way research content is consumed, filtered, and shared.
+
+👨‍🔬 Use Case 1: Multi-PDF Summarizer for R&D and Academic Research
+For R&D teams at pharmaceutical, AI, and engineering firms, as well as graduate students and faculty, our system enables bulk ingestion of research papers (PDFs) and produces domain-specific, deeper-context summaries. This reduces time spent manually reviewing literature and allows teams to:
+
+Extract key methods, results, and implications across dozens of papers in minutes
+
+Tailor summaries to specific domains (e.g., oncology, NLP, materials science)
+
+Accelerate innovation cycles by focusing only on the most relevant findings
+
+Potential Integrations: Google Scholar, Semantic Scholar, institutional research portals
+
+📰 Use Case 2: Weekly Research Summary Newsletter
+For university departments, labs, or scientific communities, the system can be used to auto-generate custom research digests. These curated summaries highlight the most impactful new publications each week, organized by topic or field.
+
+Saves hours for researchers who want to stay current
+
+Drives higher engagement with internal or public-facing research communications
+
+Scales effortlessly across departments, disciplines, or subscriber lists
+
+Potential Customers: NYU Research Newsletter, university libraries, Slack communities, Substack-style academic publishers
+
+
 
 ## Current Status Quo (Non-ML Baseline)
 Currently, researchers must manually read through full papers or abstracts to understand the core ideas, which is time-consuming, especially given the exponential growth of scientific publications. Some platforms show human-written abstracts, but:
