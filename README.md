@@ -47,9 +47,9 @@ link to their contributions in all repos here. -->
 
 | Name                            | Responsible for | Link to their commits in this repo |
 |---------------------------------|-----------------|------------------------------------|
-| Sai Navyanth Penumaka                   | Data Pipeline                |                                    |
-| Geethika Rao Gauravelli                   | Model Training                |                                    |
-| Venkat Kumar Laxmi Kanth Nemala                   | Model Serving and Monitoring                |                                    |
+| Sai Navyanth Penumaka                   | Data Pipeline                |    65ced668e69c61c5e50bc706c1d2671b957fffb0, 217e3cc02f7289948fc7c80ac9078841553b07dd,5286ac1cfcf4e61ea9ce1836671b979c58f0d8b8,dc4f741194f0c6f3da5a9030737e214efc99d84e,c5ea5058b6137826127e39bf454161e48f106fcf,48df898011fcf864f0ae48c955fb928916744475                      |
+| Geethika Rao Gauravelli                   | Model Training                | 5830e2462a450b0d4be6f45a64855a9d78f93a83,3314f137b63b258a305b5060df17fadf51cf34f4                              |
+| Venkat Kumar Laxmi Kanth Nemala                   | Model Serving and Monitoring                | 19e4a38814991e01b1cf2975ba9aa852cafe3325,94dcd5ca204bc8d5c194bf81993c94a9e937b3f4,d3d22d5bbfc178713f03026fff6ea9e13e9d037b,509418d4132a3c55740f521dea98e3b08732dab4 ,f372679ece2bf6cb657e42b3cfe9be4d8c710cc8,df46b13e24a671e9a64681259d4a29a715a4058c                          |
 
 
 
