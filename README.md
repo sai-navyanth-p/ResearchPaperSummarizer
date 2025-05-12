@@ -96,7 +96,7 @@ all the data. -->
 | Requirement        | How many/when                       | Justification                                                                 |
 |--------------------|-------------------------------------|-------------------------------------------------------------------------------|
 | **m1.medium VMs**  | 3 for entire project duration       | One for web interface, one for data pipeline, one for dashboard monitoring. |
-| **gpu_a100**       | 4-hour blocks twice a week         | For fine-tuning BART on arXiv data. |
+| **gpu_a100**       | 6-hour blocks twice a week         | For fine-tuning BART on arXiv data. |
 | **Floating IPs**   | 1 persistent, 1 ephemeral           | Persistent: API + UI. Ephemeral: model testing or LAMA evaluation jobs. |
 | **100 GB storage** | Project duration                    | To store preprocessed arXiv data, model checkpoints, summaries, logs. |
 | **Object storage** | ~50 GB during mid/final phases      | To store large models and multi-version summaries for reproducibility. |
